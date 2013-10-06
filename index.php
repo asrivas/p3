@@ -71,8 +71,8 @@
     $num_users = $users_result->num_rows;
   }
 
-  for ($cur_user_num = 0; $user_num < $num_users; $user_num++){
-    $users_result->data_seek($user_num);
+  for ($cur_user_num = 0; $cur_user_num < $num_users; $cur_user_num++){
+    $users_result->data_seek($cur_user_num);
     $cur_user = $users_result->fetch_assoc();
     print_user($cur_user);
   }
