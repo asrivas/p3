@@ -48,8 +48,8 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Welcome to <?php print $name; ?>'s Photo Gallery</h1>
+        <p class="lead">Select an album to view.</p>
       </div>
 
     </div><!-- /.container -->
@@ -60,11 +60,12 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/assets/js/jquery.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
 <?php 
-  function print_photo_link($photo){
-    print "<form method='post' action='view_photo.php'>"
-    print "<h2>Name: " . $photo['title'] . "</h2>";
-    print "<input type='hidden' name='photo_id' value='" . $photo['photo_id'] . "'/>";
+  function print_album_link($album){
+    print "<form method='post' action='view_album.php'>"
+    print "<h2>Name: " . $album['album_name'] . "</h2>";
+    print "<input type='hidden' name='album_id' value='" . $album['album_id'] . "'/>";
     print "<input type='submit' name='View Albums' value='View Album' />";
     print "</form>";
   }

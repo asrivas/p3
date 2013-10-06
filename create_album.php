@@ -36,10 +36,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="sign_up.php">Sign Up</a></li>
-            <li><a href="create_album.php">Create Album</a></li>
-            <li><a href="add_photo.php">Add a Photo</a></li>
+            <li class="active"><a href="create_album.php">Create Album</a></li>
+            <li><a href="upload_photo.php">Add a Photo</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -48,8 +48,22 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Add an Album</h1>
+        <p class="lead">Please enter Album Information</p>
+<?php 
+       print "<div align='left'>";
+       print "<form method='post' action='add_album.php'>";
+       print "<p>Album Name <p>";
+       print "<input type='text' name='album_name' value=''/>";
+       print "<p>Your Name</p>";
+       print "<input type='text' name='name' value=''/>";
+       print "<p>Your Password</p>";
+       print "<input type='password' name='confirm_password' value=''/><br>";
+       print "<input type='submit' name='add' value='Create' />";
+       print "</form>"; 
+       print "</div>"; 
+
+?>
       </div>
 
     </div><!-- /.container -->

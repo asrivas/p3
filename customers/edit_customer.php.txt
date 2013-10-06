@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php require_once 'db_login.php'; ?>
+<html> 
+  <head> 
+    <title>Customer View</title>
+    <meta charset="utf-8" />
+  </head> 
+  <body>
+   <?php
+   if (isset ($_POST['edit'])){
+    print "<form method='post' action='update_customer.php'>";
+    print "<h2>Name: </h2>";
+    print "<input type='text' name='cname' value='" . $_POST['cname'] . "'/>";
+    print "<p>Address: </p>";
+    print "<input type='text' name='street' value='" . $_POST['street'] . "'/>";
+    print "<input type='text' name='zip' value='" . $_POST['zip'] . "'/>";
+    print "<p>Phone #:</p> ";
+    print "<input type='text' name='phone' value='" . $_POST['phone'] . "'/>";
+    print "<input type='hidden' name='cno' value='" . $_POST['cno'] . "'/>";
+    print "<input type='submit' name='update' value='Update' />";
+    print "</form>";     
+   } elseif (isset ($_POST['delete'])) {
+     // Creating a mysqli object establishes a database connection
+     $db_server = new mysqli($db_hostname, $db_username, $db_password, $db_database); 
+     // We can call connect_errno to see If the connection failed- zero means no error occurred
+     if ($db_server->connect_errno) {
+       // connect_error returns the a string of the error from the latest sql command
+       print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+     } else { 
+       // We successfully connected to the database
+       // The query is a php string 
+       if (isset($_POST['cno'])) {
+	   $query = "DELETE FROM customers WHERE cno='". $_POST['cno'] . "';";
+	   $customers_result = $db_server->query($query);
+	   if (!$customers_result) {
+	     /* If there was an error executing the query, the result will be false,
+	      otherwise its a mysql result resource. */
+	     print ("<h1> There was an error:</h1> <p> " . $db_server->error . "</p>");
+	   } else {
+	     print "<p>" . $_POST['cname'] . " was successfully deleted!</p>";
+	   }
+	 }
+     }
+     // You should always close server connections when you're done
+     $db_server->close();
+     if ($db_server->connect_errno) {
+       // connect_error returns the a string of the error from the latest sql command
+       print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+     } 
+     }
+
+?> 
+  </body>
+</html>

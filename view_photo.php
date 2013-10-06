@@ -36,10 +36,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="sign_up.php">Sign Up</a></li>
             <li><a href="create_album.php">Create Album</a></li>
-            <li><a href="add_photo.php">Add a Photo</a></li>
+            <li><a href="upload_photo.php">Add a Photo</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -48,8 +48,17 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1><?php print $_POST['title']; ?></h1>
+        <p class="lead"></p>
+        <div align="center">
+          <img src=<?php print "images/".$_POST['file'];?>>
+        </div>
+<?php 
+  print "<form method='post' action='view_album.php'>"
+  print "<input type='hidden' name='album_id' value='" . $_POST['album_id'] . "'/>";
+  print "<input type='submit' name='album' value='Back to Album' />";
+  print "</form>";
+?>
       </div>
 
     </div><!-- /.container -->

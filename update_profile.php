@@ -48,8 +48,31 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Update Information</h1>
+        <p class="lead">Please enter your information</p>
+<?php 
+       print "<div align='left'>";
+       print "<form method='post' action='update_user.php'>";
+       print "<p>New Password (must contain)</p>";
+       print "<input type='password' name='password' value=''/>";
+       print "<p>Please enter your new password again</p>";
+       print "<input type='password' name='confirm_password' value=''/>";
+       print "<p>Please enter your new password again</p>";
+       print "<input type='password' name='confirm_password' value=''/>";
+       print "<p>Please enter your old</p>";
+       print "<input type='password' name='old_password' value=''/>";
+       print "<p>Personal Information</p> ";
+       print "<p>Fact 1</p> ";
+       print "<input type='text' name='fact1' value=''/><br>";
+       print "<p>Fact 2</p> ";
+       print "<input type='text' name='fact2' value=''/><br>";
+       print "<p>Fact 3</p> ";
+       print "<input type='text' name='fact3' value=''/><br>";
+       print "<input type='submit' name='update' value='Update' />";
+       print "</form>"; 
+       print "</div>"; 
+
+?>
       </div>
 
     </div><!-- /.container -->
@@ -60,14 +83,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/assets/js/jquery.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-<?php 
-  function print_photo_link($photo){
-    print "<form method='post' action='view_photo.php'>"
-    print "<h2>Name: " . $photo['title'] . "</h2>";
-    print "<input type='hidden' name='photo_id' value='" . $photo['photo_id'] . "'/>";
-    print "<input type='submit' name='View Albums' value='View Album' />";
-    print "</form>";
-  }
-?>
   </body>
 </html>

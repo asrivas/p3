@@ -17,10 +17,11 @@
        print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
      } else { 
 
-        $has_name;
-        $matching_password;
+        $has_name = $_POST['name'] != "";
+        $strong_password;
+        $matching_password = $_POST['password'] == $_POST['confirm_password'];
 
-        $valid_information = $has_name && $matching_password;
+        $valid_information = $has_name && $matching_password && $strong_password;
 
         if($valid_information){  
           $query = "INSERT INTO users(name, password, fact1, fact2, fact3) VALUES ('" . $_POST['name'] .

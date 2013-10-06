@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0057)http://www.cs.utexas.edu/~bendy/teaching/cs105/Phase3.php -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+<title>CS 105: PHP &amp; SQL - Phase 3</title>
+  <link rel="stylesheet" type="text/css" href="./CS 105  PHP & SQL - Phase 3_files/cs105style.css">
+  
+  <style type="text/css">
+    h2 {
+    margin-top: 2pt;
+    margin-bottom: -5pt;
+    }
+    .info-box p {
+    width: 90%;
+    margin-left: 5%;
+    text-align: justify;
+    }
+    .SQLCommand {
+    font-variant:small-caps; 
+    font-weight: bold;
+    }
+  </style>
+</head> 
+
+<body class="cs105">
+  <div id="container" style="text-align: center">
+  <div id="cs105header" style=""> </div>
+    <div id="main-box">
+        <h1 style="font-size: 45pt; margin-top:0pt">
+          <img src="./CS 105  PHP & SQL - Phase 3_files/star.png" alt="star"> 
+            <span style="vertical-align: 7px;"> 
+              Phase 3
+            </span>
+          <img src="./CS 105  PHP & SQL - Phase 3_files/star.png" alt="star"> 
+        </h1>
+        <h1 style="font-size: 30pt; margin-top:-25pt">
+            <span style="vertical-align: 7px;"> 
+	      SQL
+            </span>
+        </h1>
+        <h2 style="margin-top:-10px"> Due October 6th, 10:00pm </h2>
+         <h1>
+           <img src="./CS 105  PHP & SQL - Phase 3_files/star.png" alt="star"> 
+           <span style="vertical-align: 7px;"> 
+             Assignment
+           </span>
+           <img src="./CS 105  PHP & SQL - Phase 3_files/star.png" alt="star"> 
+         </h1>
+	 <p style="text-align: left; width: 80%; margin-left: 10%;
+	   margin-right: 10%" class="text-box"> For this assignment,
+	   you'll be extending the dynamic website you built for the
+	   <a href="http://www.cs.utexas.edu/~bendy/teaching/cs105/Phase2.php" style="font-weight:normal;
+	   text-decoration:underline"> second phase</a> to use MySQL
+	   for data management. All the functionality from that
+	   assignment should be retained; most of the changes will be
+	   in the backend.
+	 </p>
+	<h1>
+          <img src="./CS 105  PHP & SQL - Phase 3_files/star.png"> 
+          <span style="vertical-align: 7px;"> 
+            Requirements
+          </span>
+          <img src="./CS 105  PHP & SQL - Phase 3_files/star.png"> 
+        </h1>
+	<table class="info-box">
+	  <tbody><tr>
+	    <th> Requirement </th>
+	    <th> Value <br> 
+	    (15pt Total) </th>
+	  </tr>
+	  <tr class="label"> 
+	    <td> <a id="Generate">Database Design</a></td>
+	    <td>  6pt Total</td>
+	  </tr>
+	  <tr>
+	    <td> 
+	      <h2>Table Design</h2> 
+	      <p> You need to create a script SQL for building the
+		database's tables, akin to the 
+		<a href="http://www.cs.utexas.edu/~bendy/teaching/cs105/createMail.sql"> 
+		  SQL
+		</a> and <a href="http://www.cs.utexas.edu/~bendy/teaching/cs105/createDog.sql">
+		  Join
+		</a> Walkthroughs we've looked at in class. On the off chance
+		that you mess up your database during development, running this
+		script will return the database to a clean initial state.
+	      </p>
+	      <p>This script should
+		<span class="SQLCommand">create</span> the tables for the database. Think
+		carefully about the name and type of
+		each <b>column</b>, as well as the unique set of
+		columns that will serve as the table's <b>primary
+		key</b>. The keys of the associative arrays used for
+		data storage in the previous phase can guide your
+		design.  I suggest a table for each
+		conceptual <b>entity</b>- profiles, albums, and
+		pictures. Depending on your design, you may have other
+		tables representing <b>relationships</b> between the
+		three main entities.
+	     </p>
+	    </td>
+	    <td> 4pt </td>
+	  </tr>
+	  <tr>
+	    <td> 
+	      <h2>Database Initialization</h2>
+	      <p> The SQL script also needs to initialize the database by
+		<span class="SQLCommand">inserting</span> default data for each table. This data should 
+		consist of at least 
+		</p><ul style="text-align: left; width: 90%; margin-bottom:0px">
+		  <li> Four Users </li>
+		  <li> One Album per User (Four Total)</li>
+		  <li> Three pictures per album (Twelve Total)</li>
+		</ul>
+	      <p></p>
+	    </td>
+	    <td> 2pt </td>
+	  </tr>
+	  <tr class="label"> 
+	    <td> <a id="Process">MySQL Backend</a></td>
+	    <td> 9pt Total</td>
+	  </tr>
+	  <tr>
+	    <td> <h2>Form Handling </h2> 
+	      <p> Each of the three form handlers from the previous
+		phase should now <span class="SQLCommand">insert</span> submitted data into the
+		database using the <b>mysqli</b> php library. As in
+		Phase 2, handlers should only insert data after first
+		validating it. All three handlers should
+		use <b>prepared queries</b> to prevent
+		<b>SQL injection</b> attacks. As a reminder, these three handlers are:
+		</p><ul style="text-align: left; width: 90%; margin-bottom:0px">
+		  <li> User Signup </li>
+		  <li> Photo Uploader </li>
+		  <li> Album Creator</li>
+		</ul>		
+	      <p></p>
+	    </td><td> 5pt </td>
+	  </tr>
+	  <tr>
+	    <td> <h2>Page Generation </h2>
+	      <p> Dynamic pages need to also use the <b>mysqli</b>
+		library to fetch data by <span class="SQLCommand">selecting</span> rows based
+		on parameters provided $_GET.
+	      </p>
+	    </td>
+	    <td> 3pt </td>
+	  </tr>
+	  <tr>
+	    <td> <h2>Picture Deletion </h2>
+	      <p> Album pages should now put a 'Delete' button beneath
+		each picture that deletes the photo from the
+		database. When clicked, the button's handler
+		will <span class="SQLCommand">delete</span> the corresponding row from the
+		picture table. The handler should also use
+		the <a href="http://www.php.net/manual/en/function.unlink.php">
+		unlink</a> function to remove the actual image from the
+		photo upload folder.
+	      </p><p>
+	    </p></td>
+	    <td> 1pt </td>
+	  </tr>
+	  <tr class="label">
+	    <td> Bonus Points </td>
+	    <td> 2pt Total </td>
+	  </tr>
+       	  <tr>
+	    <td> 
+	      <p> Implement a profile update page. Include links to
+		this page on each profile. When clicked, the user
+		should be presented with a form with input elements
+		for each bit of profile data, excluding the username
+		but including a box for the old password. This form
+		might look like the one on the signup page. These
+		input elements should have the user's current
+		information as default values.
+	      </p>
+	      <p>
+		The form handler should check that the old password
+		matches the one in the database and validate the data
+		before <span class="SQLCommand">updating</span> the row in the database for
+		that user ID.
+	      </p>
+	    </td>
+	    <td>
+	      1pt
+	    </td>
+	  </tr>
+	</tbody></table>
+        <h1>
+          <img src="./CS 105  PHP & SQL - Phase 3_files/star.png" alt="star"> 
+            <span style="vertical-align: 7px;"> 
+              Submission Instructions
+            </span>
+          <img src="./CS 105  PHP & SQL - Phase 3_files/star.png" alt="star"> 
+        </h1>
+        <p style="text-align: left; width: 80%; margin-left: 10%; margin-right: 10%" class="text-box">
+         As with all homeworks, you will submit this project in a two-step process:
+        </p>
+        <ul style="text-align: left; width: 70%; margin-left: 10%; margin-bottom:0px"> 
+          <li>
+            First, place all source code (stylesheets, html, and php files) in a single <b>p3</b> directory. 
+            You will submit this homework under the unique id <b> p3 </b> using the <i>command-line</i> 
+	    turnin per the instructions on the course <a href="http://www.cs.utexas.edu/~bendy/teaching/cs105/index.php">homepage</a>.  
+          </li>
+          <li>
+            You will also put your assignment up on your personal webspace on z. Per the 
+            <a href="http://z.cs.utexas.edu/htdocs/faq.html"> FAQ</a> for
+            z, you'll need to place these files in /u/z/users/cs105/YOURCSID/p3. 
+	  </li>
+	</ul>
+
+
+    </div>					     
+    <div id="footer">
+      <img src="./CS 105  PHP & SQL - Phase 3_files/footer.png" alt="footer">
+    </div>
+  </div>
+
+
+</body></html>

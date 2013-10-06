@@ -1,0 +1,337 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	background: #111E00;
+        font: normal 10pt 'ArialMT', 'Arial', Sans-serif
+}
+
+body.cs105 {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	background-image: url(../images/Bricks_2.jpg);
+        font: normal 10pt 'ArialMT', 'Arial', Sans-serif
+}
+
+#container {
+    position: absolute;
+    width: 800px;
+    top: 50%;
+    left: 50%;
+    margin-top: -255px;
+    margin-left: -400px;
+    padding: 0px;
+    text-align:left;
+}
+
+ li {
+    padding: 0px 0px 5px 0px;
+    margin: 0px 0px 0px 0px;
+    font: 10pt ArialMT, Arial, sans-serif;
+}
+
+#header {
+    padding: 0px 0px 0px 0px;
+    background-image: url(../images/bamboo_header_rounded.png);
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 109px;
+    text-align:center;
+    padding-top: 58px;
+    font: bold 35pt ArialMT, Arial, sans-serif;
+    color: #FFECCB;
+}
+
+#cs105header {
+    padding: 0px 0px 0px 0px;
+    background-image: url(../images/header.png);
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 147px;
+    text-align:center;
+    padding-top: 58px;
+    font: bold 35pt ArialMT, Arial, sans-serif;
+    color: #FFECCB;
+}
+
+#footer {
+    padding-bottom : -25px;
+    margin-bottom : -125px
+}
+
+p a {
+    text-decoration: none;
+    font: bold 10pt ArialMT, Arial, sans-serif;
+    color : #6F8B29;    
+}
+
+#menu-bar {
+    width: 800px;
+    background: #965403;
+    border: 2px solid #4C2E04;
+    padding: 0px 0px 0px 0px;
+    border-right: 0px;
+    margin-right: 0px;
+    top: -5px;
+    position: relative;
+    border-collapse: collapse;
+}
+
+#menu-bar tr {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#menu-bar tr :hover {
+	color: #6F8B29;
+	background: #D18508;
+}
+
+#menu-bar tr :hover a {
+	color: #6F8B29;
+}
+
+.menu-item {
+    text-align: center;
+    border-right: 2px solid #4C2E04;
+    margin: 0px 0px 0px 0px;
+    padding: 3px 0px 0px 0px;
+    width: 125px;
+    font: bold 10pt ArialMT, Arial, sans-serif;
+    color: #425914;
+}
+
+.menu-item a {
+	text-decoration: none;
+	color: #425914;
+	font: bold 10pt ArialMT, Arial, sans-serif;
+}
+
+#main-box {
+    margin: -11px 0px -1px 0px;
+    width: 100%;
+    text-align: center;
+    color: rgb(108, 66, 46);
+    background-image: url(../images/body.png);
+}
+
+#left-box {
+    padding: 10px 20px 0px 10px;
+    width: 68%;
+    text-align: center;
+    color: rgb(108, 66, 46);
+}
+
+#announcement-box {
+    margin: 10px 0px 10px -45px;
+    width: 100%;
+    border-collapse:collapse;
+    border: none;
+}
+
+#announcement-box th {
+    font: 10pt "Arial Black", Arial, sans-serif;
+    background-color: rgb(108, 66, 46);
+    color: rgb(238, 233, 213);
+    border-left: 2px solid rgb(108, 66, 46);
+}
+
+#announcement-box tr {
+    border-left: 2px solid rgb(108, 66, 46);
+    border-right: 2px solid rgb(108, 66, 46);
+}
+
+#announcement-box td {
+    padding: 2px 5px 2px 5px;
+}
+
+#announcement-box .announcement-date {
+    border: none;
+    font: 10pt "Arial", Arial, sans-serif;
+    background: rgb(120,58,52);
+    color: rgb(238, 233, 213);
+}
+
+#announcement-box .announcement-title {
+    border: none;
+    text-align: center;
+    padding-left: 0px;
+    background: rgb(159, 132, 112);
+    color:  rgb(120,58,52);
+}
+
+#announcement-box .announcement-text {
+    text-align: left;
+    display: none;
+    background-color: rgb(238, 233, 213);
+    padding: 2px 5px 2px 5px;
+    
+}
+
+#announcement-box .announcement-button {
+    font: 7pt "Arial Black", Arial, sans-serif;
+    width: 20%;
+}
+
+#main-box a:visited {
+    color: rgb(108, 66, 46);
+}
+
+#main-box a {
+    color: rgb(120,58,52);
+}
+
+.info-box {
+    width: 70%;
+    margin: 10px 15% 0px 15%;
+    border: 2px solid rgb(108, 66, 46);
+    border-collapse:collapse;
+    color: rgb(108, 66, 46);
+}
+
+.info-box th {
+    font: 10pt "Arial Black", Arial, sans-serif;
+    background-color: rgb(108, 66, 46);
+    color: rgb(238, 233, 213);
+    border-left: 2px solid rgb(108, 66, 46);
+}
+
+.text-box {
+    margin: 5px 18% 0px 18%;
+    width: 66%;
+    text-align: justify;
+    text-indent: 15pt;
+}
+
+.bordered-text-box {
+    margin: 5px 18% 0px 18%;
+    width: 66%;
+    text-align: left;
+    background: rgb(159, 132, 112);
+    border: 2px solid rgb(108, 66, 46);
+}
+
+.info-box tr, th {
+    border: 2px solid rgb(108, 66, 46);
+}
+
+.info-box td {
+    border: 2px solid rgb(108, 66, 46);
+    padding: 2px 5px 2px 5px;
+}
+
+.info-box .label{
+    font: 10pt "Arial Black", Arial, sans-serif;
+    background: rgb(159, 132, 112);
+    color:  rgb(120,58,52);
+}
+
+#main-box h1 {
+    font: 26pt"Arial Black", Arial, sans-serif;
+    font-variant:small-caps;
+    color: rgb(120,58,52);
+    margin: 15px 55px 0px 30px;
+}
+
+#center-box {
+    float: left;
+    margin: 0px 5px 0px 12%;
+    width: 76%;
+    text-align: left;
+}
+
+#center-box table {
+    font: normal 10pt Gothic, sans-serif;
+    color:  #425914; 
+    width: 100%;
+}
+
+#center-box table tr td a {
+    text-decoration: none;
+    font: bold 10pt ArialMT, Arial, sans-serif;
+    color:  #425914; 
+}
+
+.text-box li a {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.star-item li {
+    list-style-image: url(../images/small-star.png);
+}
+
+#right-box {
+    float: right;
+    margin: 10px 10px 10px 5px;
+    width: 28%;
+}
+
+.content-box {
+    border: 2px solid #4C2E04;
+    background: #FFBF7A;
+    margin-bottom: 5px;
+}
+
+.content-title {
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    padding: 2px 0px 2px 0px;
+    font: bold 10pt ArialMT, Arial, sans-serif;
+    color:#AAA84A;
+    background: #4C2E04;
+}
+
+#pub-list {
+    padding: 0px 0px 5px 10px;
+    margin: 0px 0px 0px 10px;
+    font: 10pt ArialMT, Arial, sans-serif;
+    list-style-type: disc;
+}
+
+#pub-list li {
+    padding: 7px 0px 5px -15px;
+    margin: 0px 0px 0px 0px;
+    list-style-type: decimal; 
+    list-style-position: outside
+}
+
+#pub-list li.dark-bg {
+    padding: 7px 110px 2px 20px;
+    margin: 0px -110px 0px -30px;
+    color: #6F8B29;	
+    background: #EAAA65;
+}
+
+.dark-abstract-box {
+   margin: 10px;
+   padding: 10px;
+   border-style: solid;
+   border-color: #4C2E04;
+   display: none;
+   background: #FFBF7A;
+}
+
+.light-abstract-box {
+   margin: 10px;
+   padding: 10px;
+   border-style: solid;
+   border-color: #4C2E04;
+   display: none;
+   background: #EAAA65;
+}
+
+.code-text {
+    font-family: Monospace;
+}
+
+.content-box p {
+	margin: 5px 10px 10px 14px;
+	font: 10pt sans-serif;
+	text-align: justify;
+}
+
+tr.dark-bg {
+	background: #DF9F5A 
+}

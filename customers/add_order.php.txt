@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+// You'll need to update db_login to include the database info if you didn't do it last week.
+
+<?php require_once 'db_login.php'; ?>
+<html> 
+  <head> 
+    <title>Update Orders</title>
+    <meta charset="utf-8" />
+  </head> 
+  <body>
+   <?php
+   // Creating a mysqli object establishes a database connection
+   $db_server = new mysqli($db_hostname, $db_username, $db_password, $db_database); 
+   // We can call connect_errno to see If the connection failed- zero means no error occurred
+   if ($db_server->connect_errno) {
+     // connect_error returns the a string of the error from the latest sql command
+     print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+   } else { 
+     // We successfully connected to the database
+     // The query is a php string 
+     $customers_query = "SELECT cno, cname FROM customers";
+     // query executes an sql query
+     $customers_result = $db_server->query($customers_query);
+
+     $employees_query = "SELECT eno, ename FROM employees";
+     $employees_result = $db_server->query($employees_query);
+
+     /* UPDATE HERE
+        You need to add a $parts_query that selects pno + pname
+	And put the results of executing that query into $parts_result */
+
+     if (!$customers_result || !$employees_result || !$parts_result) {
+       /* If there was an error executing the query, the result will be false,
+	otherwise its a mysql result resource. */
+	 print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+       } else {
+       // num_rows returns the number of rows resulting from a query
+
+       print <<<_HEADER
+	 <h1> Choose Order Info</h1>
+	 <form method='post' action='update_orders.php'>	 
+_HEADER;
+
+       $num_customers = $customers_result->num_rows;
+       print "Customer: <select name='cno'>";
+       for ($cur_customer_num = 0; $cur_customer_num < $num_customers; $cur_customer_num++){
+	 // data_seek goes to the specified row of a query result 
+	 $customers_result->data_seek($cur_customer_num);
+	 // fetch_assoc returns the current row as an associative array
+	 $cur_customer = $customers_result->fetch_assoc();
+	 print "<option value='" . $cur_customer['cno'] . "'> cno #" . $cur_customer['cno'] . ": " . $cur_customer['cname'] . "</option>\n";
+       }
+       print "</select><br /> \n";
+
+       $num_employees = $employees_result->num_rows;
+       print "Employee: <select name='eno'>";
+       for ($cur_employee_num = 0; $cur_employee_num < $num_employees; $cur_employee_num++){
+	 // data_seek goes to the specified row of a query result 
+	 $employees_result->data_seek($cur_employee_num);
+	 // fetch_assoc returns the current row as an associative array
+	 $cur_employee = $employees_result->fetch_assoc();
+	 print "<option value='" . $cur_employee['eno'] . "'> eno #" . $cur_employee['eno'] . ": " . $cur_employee['ename'] . "</option>\n";
+       }
+       print "</select> <br />\n";
+
+       /* UPDATE HERE
+	You need to iterate through the rows of $parts_result, 
+	putting the results as options of a select element
+	*/
+
+       print " Quantity: <select name='qty'>";
+       for ($cur_qty = 0; $cur_qty <= 25; $cur_qty++){
+	 print "<option value='$cur_qty'> $cur_qty </option>\n";
+       }
+       print "</select>\n<br /><input type='submit' name='submit' value='Add Order'>";
+       print "</form>";
+     }
+   }
+
+  // You should always close server connections when you're done
+  $db_server->close();
+  if ($db_server->connect_errno) {
+    // connect_error returns the a string of the error from the latest sql command
+    print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+  } 
+
+?> 
+  </body>
+</html>

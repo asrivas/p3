@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php require_once 'db_login.php'; ?>
+<html> 
+  <head> 
+    <title>Customer View</title>
+    <meta charset="utf-8" />
+  </head> 
+  <body>
+   <?php
+   // Creating a mysqli object establishes a database connection
+   $db_server = new mysqli($db_hostname, $db_username, $db_password, $db_database); 
+   // We can call connect_errno to see If the connection failed- zero means no error occurred
+   if ($db_server->connect_errno) {
+     // connect_error returns the a string of the error from the latest sql command
+     print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+   } else { 
+     // We successfully connected to the database
+     // The query is a php string 
+     $customers_query = "SELECT * FROM customers";
+     // query executes an sql query
+     $customers_result = $db_server->query($customers_query);
+     if (!$customers_result) {
+       /* If there was an error executing the query, the result will be false,
+	otherwise its a mysql result resource. */
+	 print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+       } else {
+       // num_rows returns the number of rows resulting from a query
+       $num_customers = $customers_result->num_rows;
+       print ("<h1> Our Customers </h1>");
+       print "<form method='post' action='add_customer.php'>";
+       print "<h2>Name: </h2>";
+       print "<input type='text' name='cname' value='Name'/>";
+       print "<p>Address: </p>";
+       print "<input type='text' name='street' value='Street'/>";
+       print "<input type='text' name='zip' value='Zip'/>";
+       print "<p>Phone #:</p> ";
+       print "<input type='text' name='phone' value='Phone'/>";
+       print "<input type='submit' name='add' value='Add Customer' />";
+       print "</form>"; 
+
+       for ($cur_customer_num = 0; $cur_customer_num < $num_customers; $cur_customer_num++){
+	 // data_seek goes to the specified row of a query result 
+	 $customers_result->data_seek($cur_customer_num);
+	 // fetch_assoc returns the current row as an associative array
+	 $cur_customer = $customers_result->fetch_assoc();
+	 print_customer($cur_customer);
+       }
+     }
+   }
+
+  // You should always close server connections when you're done
+  $db_server->close();
+  if ($db_server->connect_errno) {
+    // connect_error returns the a string of the error from the latest sql command
+    print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+  } 
+
+  function print_customer ($customer) {
+    print "<form method='post' action='edit_customer.php'>";
+    print "<h2>Name: " . $customer['cname'] . "</h2>";
+    print "<input type='hidden' name='cname' value='" . $customer['cname'] . "'/>";
+    print "<p>Address: " . $customer['street'] . ", " . $customer['zip'] . "</p>";
+    print "<input type='hidden' name='street' value='" . $customer['street'] . "'/>";
+    print "<input type='hidden' name='zip' value='" . $customer['zip'] . "'/>";
+    print "<p>Phone #: " . $customer['phone'] .  "</p>";
+    print "<input type='hidden' name='phone' value='" . $customer['phone'] . "'/>";
+    print "<input type='hidden' name='cname' value='" . $customer['cname'] . "'/>";
+    print "<input type='hidden' name='cno' value='" . $customer['cno'] . "'/>";
+    print "<input type='submit' name='edit' value='Edit' />";
+    print "<input type='submit' name='delete' value='Delete' />";
+    print "</form>";
+  }
+?> 
+  </body>
+</html>

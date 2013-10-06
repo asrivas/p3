@@ -1,0 +1,88 @@
+<?php
+require_once("get_info.php");
+
+$cities = getCities();
+
+$cur_city = $cities[0];
+if (isset($_GET['city'])){
+  if (in_array($_GET['city'], $cities)){
+    $cur_city = $_GET['city'];
+  }
+ }
+
+//Get array with information about events in the current city
+$city_events = getCityEvents($cur_city);
+
+$cur_event = (isset($_GET['event']) && array_key_exists($_GET['event'], $city_events)) ? $_GET['event'] : 0;
+$num_events = count($city_events);
+$prev_event = $cur_event == 0 ? $num_events - 1 : $cur_event - 1;
+$next_event = $cur_event == num_events - 1 ? 0 : $cur_event + 1;
+
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head> 
+  <title>Music Map</title>
+  <link rel="stylesheet" type="text/css" href="musicstyle.css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head> 
+<body>
+  <div id="container" style="text-align: center">
+      <div id="map-box" style='background-image: url(<? echo getCityMap($cur_city)?>)'>
+        <table id="nav-box">
+	    <tr>
+	      <td>
+	        <div class="nav-pic">
+                  <a href="index.php?city=<?php echo $cur_city?>&event=<?php echo $prev_event?>" > < </a>
+                </div>
+	      </td>
+	      <td>
+                <div class= "nav-pic">
+                  <a href="index.php?city=<?php echo $cur_city?>&event=<?php echo $next_event?>" > > </a>
+                </div>
+	      </td>
+	      <td>
+                <form id="loc-form" method="get">
+                  <select name="city" id="city-select" style="padding: 2px; margin: 5px" onchange="document.getElementById('loc-form').submit()">
+<?php
+                    foreach ($cities as $city){
+                       echo "                    <option value='$city'". (($city == $cur_city) ? "selected" : "" ) . ">" . getCityName($city) . "</option>\n";
+                    } 
+                  ?>
+                  </select>
+               </form>
+	     </td>
+	   </tr>
+	 </table>
+<?php 
+         foreach ($city_events as $event) {
+           echo "          <div class='event-box" . 
+     	        (($event["EventID"] == $city_events[$cur_event]["EventID"]) ? " selected-event' " : "' " ) . 
+	   	"style='top: {$event["Coordinates"]["y"]}px; left: {$event["Coordinates"]["x"]}px'></div>\n";
+	 }
+       ?>
+       <div id="event-location" style="display: block; top:<?php echo ($city_events[$cur_event]["Coordinates"]["y"] + 20)?>px;
+				       		left: <?php echo $city_events[$cur_event]["Coordinates"]["x"]?>px">
+	  <?php echo $city_events[$cur_event]["Location"] ?>
+	</div>	
+      </div>
+    <div id="info-box">
+      <div id="title-box">
+      <?php echo $city_events[$cur_event]["Band"] ?>
+      </div>
+      <div id="poster-box">
+       <img id="band-splash" src="<?php echo $city_events[$cur_event]["Poster"] ?>">
+       <div id="date-box">
+         <?php echo $city_events[$cur_event]["Date"] ?>
+       </div>
+       <div id="time-box">
+         <?php echo $city_events[$cur_event]["Time"] ?>
+       </div>
+    </div>
+    </div>
+  </div>
+
+</body>
+</html>

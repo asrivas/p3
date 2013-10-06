@@ -36,10 +36,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="sign_up.php">Sign Up</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li class="active"><a href="sign_up.php">Sign Up</a></li>
             <li><a href="create_album.php">Create Album</a></li>
-            <li><a href="add_photo.php">Add a Photo</a></li>
+            <li><a href="upload_photo.php">Add a Photo</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -48,8 +48,29 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Register</h1>
+        <p class="lead">Please enter your information</p>
+<?php 
+       print "<div align='left'>";
+       print "<form method='post' action='add_user.php'>";
+       print "<p>Name <p>";
+       print "<input type='text' name='name' value=''/>";
+       print "<p>Password (must contain)</p>";
+       print "<input type='password' name='password' value=''/>";
+       print "<p>Please enter your password again</p>";
+       print "<input type='password' name='confirm_password' value=''/>";
+       print "<p>Personal Information</p> ";
+       print "<p>Fact 1</p> ";
+       print "<input type='text' name='fact1' value=''/><br>";
+       print "<p>Fact 2</p> ";
+       print "<input type='text' name='fact2' value=''/><br>";
+       print "<p>Fact 3</p> ";
+       print "<input type='text' name='fact3' value=''/><br>";
+       print "<input type='submit' name='add' value='Register' />";
+       print "</form>"; 
+       print "</div>"; 
+
+?>
       </div>
 
     </div><!-- /.container -->

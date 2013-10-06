@@ -1,3 +1,17 @@
+<?php 
+  require_once 'db_login.php';
+  $db_server = new mysqli($db_hostname, $db_username, $db_password, $db_database); 
+  if ($db_server->connect_errno) {
+   // connect_error returns the a string of the error from the latest sql command
+    print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+  } else { 
+   // We successfully connected to the database
+   // The query is a php string 
+    $users_query = "SELECT * FROM users";
+   // query executes an sql query
+    $users_result = $db_server->query($users_query);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,9 +62,24 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+        <h1>Welcome to the Photo Gallery</h1>
+        <p class="lead">Select a user to view his or her albums</p>
+<?php
+  if(!$users_result){
+    print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
+  } else {
+    $num_users = $users_result->num_rows;
+  }
+
+  for ($cur_user_num = 0; $user_num < $num_users; $user_num++){
+    $users_result->data_seek($user_num);
+    $cur_user = $users_result->fetch_assoc();
+    print_user($cur_user);
+  }
+
+?>
+
+      </div><!--/.template-->
 
     </div><!-- /.container -->
 
@@ -60,5 +89,19 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/assets/js/jquery.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
+<?php function print_user ($user) {
+
+  print "<form method='post' action='view_profile.php'>"
+  print "<h2>Name: " . $user['name'] . "</h2>";
+  print "<input type='hidden' name='id' value='" . $user['id'] . "'/>";
+  print "<input type='hidden' name='name' value='" . $user['name'] . "'/>";
+  print "<input type='submit' name='View Albums' value='View Albums' />";
+  print "</form>";
+
+  }
+
+  $db_server->close();
+?>
   </body>
 </html>

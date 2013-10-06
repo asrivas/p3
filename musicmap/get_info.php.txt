@@ -1,0 +1,113 @@
+<?php
+
+function getCities() {
+  $cities =  array(0, 1);
+  return $cities;
+}
+
+function getCityMap($city) {
+  $image_map =  
+    array(0 => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/Austin.png", 
+	  1 => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/Portland.png");
+  return $image_map[$city];
+}
+
+function getCityName($city) {
+    $cities =  array('Austin', 'Portland');
+    return $cities[$city];
+}
+
+function getCityInfo($city) {
+  $info_map = 
+    array (0   => array("Name" => "Austin",
+			       "Postcard" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/Austin.jpg",
+			       "Motto" => "Live Music Capitol of the World" ),
+	   1 => array("Name" => "Portland",
+			       "Postcard" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/Portland.jpg",
+			       "Motto" => "The Dream of the 90s is Alive"));
+  return $info_map[$city];
+}
+
+function init_getCityEvents($city) {
+  $austin_events = array(array ("Location" => "The Scoot Inn", 
+				"EventID" => "Ae1",
+				"Time" => "8PM",
+				"Date" => "Feb. 20",
+				"Band" => "The Black Keys",
+				"Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/BlackKeys.jpg",
+				"Coordinates" => array("x" => 130, "y" => 140)),
+			 array ("Location" => "Stubbs", 
+				"EventID" => "Ae2",
+				"Date" => "Mar. 19",
+				"Time" => "10PM",
+				"Band" => "Mumford and Sons",
+				"Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/MumfordSons.jpg",
+				"Coordinates" => array("x" => 300, "y" => 220)),
+			 array ("Location" => "Saxon Pub", 
+				"EventID" => "Ae3",
+				"Date" => "July 19",
+				"Time" => "7PM",
+				"Band" => "Jimi Hendrix",
+				"Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/JimiHendrix.jpg",
+				"Coordinates" => array("x" => 150, "y" => 270)),
+			 array ("Location" => "Hole in the Wall", 
+				"EventID" => "Ae4",
+				"Date" => "Apr. 20",
+				"Time" => "10PM",
+				"Band" => "Dinosaur Jr.",
+				"Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/DinosaurJr.jpg",
+				"Coordinates" => array("x" => 450, "y" => 300)),
+			 array ("Location" => "Hole in the Wall", 
+				"EventID" => "Ae5",
+				"Date" => "May 5",
+				"Time" => "7PM",
+				"Band" => "Minus the Bear",
+				"Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/MinusBear.jpg",
+				"Coordinates" => array("x" => 230, "y" => 420)));
+  
+  $portland_events = array(array ("Location" => "Mystic Ladyland", 
+				  "EventID" => "Pe1",
+				  "Date" => "Feb. 23",
+				  "Time" => "8PM",
+				  "Band" => "The Black Keys",
+				  "Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/BlackKeys2.jpg",
+				  "Coordinates" => array("x" => 70, "y" => 150)),
+			   array ("Location" => "El Sleazo", 
+				  "EventID" => "Pe2",
+				  "Date" => "Mar. 17",
+				  "Time" => "5PM",
+				  "Band" => "Electric Mayhem",
+				  "Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/ElectricTeeth.jpg",
+				  "Coordinates" => array("x" => 220, "y" => 380)),
+			   array ("Location" => "Rogue's Gallery",
+				  "EventID" => "Pe3",
+				  "Band" => "Trey Anastasio", 
+				  "Date" => "Aug. 13",
+				  "Time" => "5PM",
+				  "Poster" => "http://zweb.cs.utexas.edu/users/bendy/musicmap/images/TreyAnastasio.jpg",
+				  "Coordinates" => array("x" => 490, "y" => 270)));
+
+  $events = array (0 => $austin_events, 
+		   1 => $portland_events);
+  return $events[$city];
+}
+
+function save_events($cityName, $events) {
+	 $fileName = ($cityName == 0) ? 'Austin.json' : 'Portland.json';
+	 $fp = fopen($fileName, 'w');
+	 fwrite($fp, json_encode($events));
+	 fclose($fp);
+}
+
+function getCityEvents($cityName) {
+	 $fileName = ($cityName == 0) ? 'Austin.json' : 'Portland.json';
+	 $fp = fopen($fileName, 'r');
+	 $contents = fread($fp, filesize($fileName));
+	 fclose($fp);
+	 $events = json_decode($contents, true);
+	 return $events;
+}
+
+//save_events("Austin", init_getCityEvents("Austin"));
+
+?>
