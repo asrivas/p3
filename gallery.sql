@@ -19,13 +19,6 @@ CREATE TABLE albums (
 	album_name VARCHAR(30)
 );
 
-DROP TABLE IF EXISTS user_albums CASCADE;
-
-CREATE TABLE user_albums (
-	id INT(5) NOT NULL REFERENCES users, 
-	album_id INT(5) NOT NULL REFERENCES albums
-);
-
 DROP TABLE IF EXISTS photos CASCADE;
 
 CREATE TABLE photos (
@@ -36,12 +29,6 @@ CREATE TABLE photos (
 	file VARCHAR(30)
 );
 
-DROP TABLE IF EXISTS album_photos CASCADE;
-
-CREATE TABLE album_photos (
-	album_id INT(5) NOT NULL REFERENCES albums, 
-	photo_id INT(5) NOT NULL REFERENCES photos
-);
 
 INSERT INTO users (name, password, fact1, fact2, fact3)
 VALUES ('Anu', 'password1', 'fact1', 'fact2', 'fact3');
@@ -63,13 +50,7 @@ VALUES (4, 'Album4');
 INSERT INTO albums (user_id, album_name)
 VALUES (4, 'Album5');
 
-INSERT INTO user_albums (id, album_id)
-VALUES (1, 1);
-INSERT INTO user_albums (id, album_id)
-VALUES (2, 2);
-INSERT INTO user_albums (id, album_id)
-VALUES (3, 3);
-INSERT INTO user_albums (id, album_id)
-VALUES (4, 4);
-INSERT INTO user_albums (id, album_id)
-VALUES (4, 5);
+INSERT INTO photos(album_id, user_id, title, file)
+VALUES(1, 1, 'San Francisco', 'sf1.jpg');
+INSERT INTO photos(album_id, user_id, title, file)
+VALUES(1, 1, 'San Francisco', 'sf2.jpg');

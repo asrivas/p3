@@ -51,10 +51,10 @@
         <h1><?php print $_POST['title']; ?></h1>
         <p class="lead"></p>
         <div align="center">
-          <img src=<?php print "images/".$_POST['file'];?>>
+          <img src=<?php print "photos/".$_POST['file'];?>>
         </div>
 <?php 
-  print "<form method='post' action='view_album.php'>"
+  print "<form method='post' action='view_album.php'>";
   print "<input type='hidden' name='album_id' value='" . $_POST['album_id'] . "'/>";
   print "<input type='submit' name='album' value='Back to Album' />";
   print "</form>";

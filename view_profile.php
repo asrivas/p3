@@ -62,8 +62,8 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Welcome to the Photo Gallery</h1>
-        <p class="lead">Select a user to view his or her albums</p>
+        <h1>Welcome to <?php print $_POST['name'] ?> 's Gallery</h1>
+        <p class="lead">Select an album to view</p>
 <?php 
   if(!$albums_result){
     print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
@@ -92,10 +92,11 @@
 
 <?php function print_album ($album) { 
   print "<div align ='left'>";
-  print "<form method='post' action='view_profile.php'>";
-  print "<h2> Name: " . $album['album_name'] . "</h2>";
+  print "<form method='post' action='view_album.php'>";
+  print "<h2>" . $album['album_name'] . "</h2>";
   print "<input type='hidden' name='id' value='" . $album['user_id'] . "'/>";
   print "<input type='hidden' name='album_id' value='" . $album['album_id'] . "'/>";
+    print "<input type='hidden' name='album_name' value='" . $album['album_name'] . "'/>";
   print "<input type='submit' name='View Albums' value='View Album' />";
   print "</form>"; 
   print "<div>";

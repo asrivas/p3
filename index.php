@@ -93,7 +93,7 @@
 <?php function print_user ($user) { 
   print "<div align ='left'>";
   print "<form method='post' action='view_profile.php'>";
-  print "<h2> Name: " . $user['name'] . "</h2>";
+  print "<h2>" . $user['name'] . "</h2>";
   print "<input type='hidden' name='id' value='" . $user['id'] . "'/>";
   print "<input type='hidden' name='name' value='" . $user['name'] . "'/>";
   print "<input type='submit' name='View Albums' value='View Albums' />";
