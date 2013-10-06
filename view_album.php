@@ -63,7 +63,7 @@
 
       <div class="starter-template">
         <h1><?php print $_POST['album_name'] ?></h1>
-        <p class="lead">Select an Album to View</p>
+        <p class="lead">Select a Photo to View</p>
 <?php 
   if(!$photos_result){
     print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");

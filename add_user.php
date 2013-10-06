@@ -31,8 +31,8 @@
           "', '" . $_POST['password'] . "', '" . $_POST['fact1'] .
           "', '". $_POST['fact2'] . "', '" . $_POST_['fact3'] . "');";
 
-          $customers_result = $db_server->query($query);
-          if (!$customers_result) {
+          $users_result = $db_server->query($query);
+          if (!$users_result) {
           	print ("<h1> There was an error:</h1> <p> " . $db_server->error . "</p>");
           } else {
           	 print "<h1> The new record is: </h1>";
