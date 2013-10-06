@@ -10,7 +10,7 @@
     $users_query = "SELECT * FROM users";
    // query executes an sql query
     $users_result = $db_server->query($users_query);
-
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +64,7 @@
       <div class="starter-template">
         <h1>Welcome to the Photo Gallery</h1>
         <p class="lead">Select a user to view his or her albums</p>
-<?php
+<?php 
   if(!$users_result){
     print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
   } else {
@@ -90,18 +90,20 @@
     <script src="bootstrap/assets/js/jquery.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 
-<?php function print_user ($user) {
-
-  print "<form method='post' action='view_profile.php'>"
-  print "<h2>Name: " . $user['name'] . "</h2>";
+<?php function print_user ($user) { 
+  print "<div align ='left'>";
+  print "<form method='post' action='view_profile.php'>";
+  print "<h2> Name: " . $user['name'] . "</h2>";
   print "<input type='hidden' name='id' value='" . $user['id'] . "'/>";
   print "<input type='hidden' name='name' value='" . $user['name'] . "'/>";
   print "<input type='submit' name='View Albums' value='View Albums' />";
-  print "</form>";
+  print "</form>"; 
+  print "<div>";
 
   }
 
-  $db_server->close();
+  $db_server->close(); 
+
 ?>
   </body>
 </html>

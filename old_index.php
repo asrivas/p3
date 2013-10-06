@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,10 +37,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.php">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
             <li><a href="sign_up.php">Sign Up</a></li>
             <li><a href="create_album.php">Create Album</a></li>
-            <li><a href="upload_photo.php">Add a Photo</a></li>
+            <li><a href="add_photo.php">Add a Photo</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -48,9 +49,10 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Welcome to <?php print $_POST['name']; ?>'s Photo Gallery</h1>
-        <p class="lead">Select an album to view.</p>
-      </div>
+        <h1>Welcome to the Photo Gallery</h1>
+        <p class="lead">Select a user to view his or her albums</p>
+
+      </div><!--/.template-->
 
     </div><!-- /.container -->
 
@@ -61,14 +63,6 @@
     <script src="bootstrap/assets/js/jquery.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 
-<?php 
-  function print_album_link($album){
-    print "<form method='post' action='view_album.php'>"
-    print "<h2>Name: " . $album['album_name'] . "</h2>";
-    print "<input type='hidden' name='album_id' value='" . $album['album_id'] . "'/>";
-    print "<input type='submit' name='View Albums' value='View Album' />";
-    print "</form>";
-  }
-?>
+
   </body>
 </html>
