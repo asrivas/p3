@@ -17,27 +17,35 @@
        print ("<h1> There was an error:</h1> <p> " . $db_server->connect_error . "</p>");
      } else { 
 
-        $has_name;
-        $matching_password;
+        $has_name = $_POST['album_name'] != "";
 
-        $valid_information = $has_name && $matching_password;
+        $user_query = "SELECT * FROM users WHERE users.name=". $_POST['name'];
+        // query executes an sql query
+        $user_result = $db_server->query($user_query);
+        $user_result->data_seek(0);
+        $user = $user_result->fetch_assoc();
+
+        $correct_password = $user['password'] == $_POST['password'];
+
+        $valid_information = $has_name && $correct_password;
 
         if($valid_information){  
-          $query = "INSERT INTO users(name, password, fact1, fact2, fact3) VALUES ('" . $_POST['name'] .
-          "', '" . $_POST['password'] . "', '" . $_POST['fact1'] .
-          "', '". $_POST['fact2'] . "', '" . $_POST_['fact3'] . "');";
+          $query = "INSERT INTO albums(user_id, album_name) VALUES ('" . $user['id'] .
+          "', '" . $_POST['album_name'] . "');";
 
           $customers_result = $db_server->query($query);
           if (!$customers_result) {
           	print ("<h1> There was an error:</h1> <p> " . $db_server->error . "</p>");
           } else {
           	 print "<h1> The new record is: </h1>";
-          	 print "<h2>Name: " . $_POST['name'] . "</h2>";
-          	 print "<p>User #: " . $db_server->insert_id . "</p>";
+          	 print "<h2>Album Name: " . $_POST['album_name'] . "</h2>";
           	 print "<a href='index.php'>Return to Gallery</a>";
           }
+        } else {
+          print "There was an error, please check the user name, album name or password";
+          print "<a href='create_album.php'>Try Again.</a>";
         }
-      }
+      } 
      // You should always close server connections when you're done
      $db_server->close();
      if ($db_server->connect_errno) {

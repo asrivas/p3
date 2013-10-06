@@ -55,7 +55,7 @@
        print "<form method='post' action='add_user.php'>";
        print "<p>Name <p>";
        print "<input type='text' name='name' value=''/>";
-       print "<p>Password (must contain)</p>";
+       print "<p>Password (must be at least length 6 and contain a digit)</p>";
        print "<input type='password' name='password' value=''/>";
        print "<p>Please enter your password again</p>";
        print "<input type='password' name='confirm_password' value=''/>";

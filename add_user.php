@@ -18,10 +18,13 @@
      } else { 
 
         $has_name = $_POST['name'] != "";
-        $strong_password;
+        $pwd_length = (strlen($_POST['password']) >= 6);
+        $has_digit = preg_match('#[0-9]#', $_POST['password']);
         $matching_password = $_POST['password'] == $_POST['confirm_password'];
 
-        $valid_information = $has_name && $matching_password && $strong_password;
+        $good_password = $matching_password && $has_digit && $pwd_length; 
+
+        $valid_information = $has_name && $good_password;
 
         if($valid_information){  
           $query = "INSERT INTO users(name, password, fact1, fact2, fact3) VALUES ('" . $_POST['name'] .
@@ -37,6 +40,8 @@
           	 print "<p>User #: " . $db_server->insert_id . "</p>";
           	 print "<a href='index.php'>Return to Gallery</a>";
           }
+        } else {
+            print "<a href='sign_up.php'>There was an error, try again</a>";
         }
       }
      // You should always close server connections when you're done
