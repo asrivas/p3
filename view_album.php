@@ -53,7 +53,7 @@
             <li class="active"><a href="index.php">Home</a></li>
             <li><a href="sign_up.php">Sign Up</a></li>
             <li><a href="create_album.php">Create Album</a></li>
-            <li><a href="add_photo.php">Add a Photo</a></li>
+            <li><a href="upload_photo.php">Add a Photo</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

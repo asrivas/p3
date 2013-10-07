@@ -31,13 +31,16 @@
           $user = $get_user_result->fetch_assoc();
           $user_id = $user['id'];
           $password = $user['password'];
-          $matching_password = $password == $_POST['password'];
+          $matching_password = ($password == $_POST['password']);
 
           $query = "INSERT INTO albums(user_id, album_name) VALUES ('" . $user_id .
           "', '" . $_POST['album_name'] . "');";
 
-
-          $matching_password = true;
+          //print "$password: ";
+          //print $password;
+          //print "post password";
+          //print $_POST['password'];
+          //$matching_password = true;
           $valid_information = $has_name && $has_user && $matching_password;
 
         if($valid_information){
@@ -52,6 +55,8 @@
         	 print "<p>Album #: " . $db_server->insert_id . "</p>";
         	 print "<a href='index.php'>Return to Gallery</a>";
          }
+        }else {
+            print "<a href='create_album.php'>There was an error, try again</a>";
         }
      }
 

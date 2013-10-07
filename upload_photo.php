@@ -54,12 +54,16 @@
        print "<div align='left'>";
        print "<form method='post' action='add_photo.php'>";
        print "<p>Photo Title <p>";
-       print "<input type='text' name='name' value=''/>";
+       print "<input type='text' name='title' value=''/>";
+       print "<p>File</p>";
+       print "<input type='file' name='file' value=''/>";
        print "<p>Your Name</p>";
        print "<input type='text' name='name' value=''/>";
+       print "<p>Album Name</p>";
+       print "<input type='text' name='album_name' value=''/>";
        print "<p>Your Password</p>";
-       print "<input type='password' name='confirm_password' value=''/><br>";
-       print "<input type='submit' name='add' value='Create' />";
+       print "<input type='password' name='password' value=''/><br>";
+       print "<input type='submit' name='add' value='Upload' />";
        print "</form>"; 
        print "</div>"; 
 

@@ -58,7 +58,7 @@
        print "<p>Your Name</p>";
        print "<input type='text' name='name' value=''/>";
        print "<p>Your Password</p>";
-       print "<input type='password' name='confirm_password' value=''/><br>";
+       print "<input type='password' name='password' value=''/><br>";
        print "<input type='submit' name='add' value='Create' />";
        print "</form>"; 
        print "</div>"; 
